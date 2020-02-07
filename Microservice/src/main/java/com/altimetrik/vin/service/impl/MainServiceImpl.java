@@ -25,12 +25,9 @@ public class MainServiceImpl implements MainService {
     String baseUrl = "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinExtended/";
 
     @Override
-    public ResponseEntity getVehicles(String vin) {
+    public Vehicle getVehicles(String vin) {
         //if input is less than 17
-        if (vin.length() != 17) {
-            System.out.println("invlid number");
-            return ResponseEntity.notFound().build();
-        }
+
         String url = baseUrl + vin + "?format=json";
 //        System.out.println(url);
 //        ResponseEntity<Response> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<Response>() {});
@@ -63,17 +60,8 @@ public class MainServiceImpl implements MainService {
                 }
             }
 
-
-
-
         }
 
-        //add the results to response
-//        response1.setResults(results);
-
-        System.out.println(vehicle);
-
-
-        return ResponseEntity.ok(vehicle);
+        return vehicle;
     }
 }

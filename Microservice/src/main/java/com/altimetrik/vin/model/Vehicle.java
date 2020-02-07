@@ -1,5 +1,10 @@
 package com.altimetrik.vin.model;
 
+import lombok.Data;
+
+import java.util.Objects;
+
+
 public class Vehicle {
     String make;
     String model;
@@ -46,5 +51,26 @@ public class Vehicle {
                 ", plantCountry='" + plantCountry + '\'' +
                 ", plantState='" + plantState + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(o==null) return false;
+        Vehicle vehicle = (Vehicle) o;
+        if(o instanceof Vehicle){
+
+        }else{
+            return false;
+        }
+        return (vehicle.getMake().equals(this.make) &&
+                vehicle.getModel().equals(this.model) &&
+                vehicle.getPlantCountry().equals(this.plantCountry) &&
+                vehicle.getPlantState().equals(this.plantState));
+
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(this.make, this.model, this.plantCountry, this.plantState);
     }
 }
