@@ -12,13 +12,10 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 public class MainController {
     @Autowired
-    RestTemplate restTemplate;
-
-    @Autowired
     MainService mainService;
 
     @RequestMapping(value = "/vehicles", method = RequestMethod.GET)
-    public ResponseEntity<Object> getVehicles(@RequestParam("vin") String vin){
-        return null;
+    public ResponseEntity getVehicles(@RequestParam("vin") String vin){
+        return mainService.getVehicles(vin);
     }
 }

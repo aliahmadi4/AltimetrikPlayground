@@ -10,4 +10,11 @@ class VinApplicationTests {
     void contextLoads() {
     }
 
+    @Test
+    void controllerTest(){
+        String vin = "WAUFFAFM3CA000000";
+
+
+    }
+
 }
