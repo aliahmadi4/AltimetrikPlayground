@@ -22,6 +22,7 @@ public class MainServiceImpl implements MainService {
 
     @Autowired
     RestTemplate restTemplate;
+
     String baseUrl = "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinExtended/";
 
     @Override

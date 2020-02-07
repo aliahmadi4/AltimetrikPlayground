@@ -32,17 +32,16 @@ import { VehicleServiceService } from './vehicle-service.service';
   </tbody>
 </table>
   
-  
-  
- 
+<agm-map style="height:300px">
+  </agm-map>
 
   </div>
   `,
-  styles: []
+  styles: ['agm-map:{height:300px}']
 })
 export class AppComponent {
   title = 'vehicleUI';
-  vin: String = 'WAUFFAFM3CA000000';
+  vin: String = null;
   make;
   model;
   plantCountry;
@@ -57,11 +56,6 @@ export class AppComponent {
         this.model = res.body.model;
         this.plantCountry = res.body.plantCountry;
         this.plantState = res.body.plantState;
-      }else{
-        this.make= '';
-        this.model = '';
-        this.plantCountry = '';
-        this.plantState = '';
       }
       
       console.log(res)

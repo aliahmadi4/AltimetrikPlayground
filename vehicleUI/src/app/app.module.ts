@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import {FormsModule} from "@angular/forms";
 import { VehicleServiceService } from './vehicle-service.service';
 import {HttpClientModule} from "@angular/common/http";
+import {AgmCoreModule} from "@agm/core";
+
 @NgModule({
   declarations: [
     AppComponent
@@ -12,7 +14,10 @@ import {HttpClientModule} from "@angular/common/http";
   imports: [
     BrowserModule,
     FormsModule, 
-    HttpClientModule
+    HttpClientModule, 
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC75QdoFmCPvNco6XuD6ygJHQXELOe5YUk'
+    })
   ],
   providers: [VehicleServiceService],
   bootstrap: [AppComponent]
