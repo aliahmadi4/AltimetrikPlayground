@@ -2,7 +2,9 @@ package com.altimetrik.vin.service.impl;
 
 import com.altimetrik.vin.model.Response;
 import com.altimetrik.vin.model.Result;
+import com.altimetrik.vin.model.Vehicle;
 import com.altimetrik.vin.service.MainService;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,28 +45,35 @@ public class MainServiceImpl implements MainService {
 //        System.out.println(response1);
 
         List<Result> results = new ArrayList<>();
+        Vehicle vehicle = new Vehicle();
 
         JSONArray jsonArray = json.getJSONArray("Results");
         for (int i = 0; i < jsonArray.length(); i++) {
-            Result tempResult = new Result();
             JSONObject object = jsonArray.getJSONObject(i);
-            if (object.getString("Value") != null)
-                tempResult.setValue(object.getString("Value"));
-            if (object.getString("ValueId") != null)
-                tempResult.setValueId(object.getString("ValueId"));
-            if (object.getString("Variable") != null)
-                tempResult.setVariable(object.getString("Variable"));
 
-                tempResult.setVariableId(object.getInt("VariableId"));
-            results.add(tempResult);
+            if (object.get("Variable") != null && !object.get("Variable").toString().equals("null")){
+                if(object.get("Variable").toString().equals("Make")){
+                    vehicle.setMake(object.get("Value").toString());
+                }else if(object.get("Variable").toString().equals("Model")){
+                    vehicle.setModel(object.get("Value").toString());
+                }else if(object.get("Variable").toString().equals("Plant Country")){
+                    vehicle.setPlantCountry(object.get("Value").toString());
+                }else if(object.get("Variable").toString().equals("Plant State")){
+                    vehicle.setPlantState(object.get("Value").toString());
+                }
+            }
+
+
+
+
         }
 
         //add the results to response
-        response1.setResults(results);
+//        response1.setResults(results);
 
-        System.out.println(results);
+        System.out.println(vehicle);
 
 
-        return null;
+        return ResponseEntity.ok(vehicle);
     }
 }
